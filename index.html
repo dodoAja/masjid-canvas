@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="world" width="1000" height="600" style="border: 1px solid black; background-color: rgba(0, 238, 255, 0.971);"></canvas>
+    <script>
+        let canvas = document.getElementById("world");
+        let context = canvas.getContext('2d');
+        
+        function createDome(x,y,r,color){
+        context.fillStyle=color;
+        context.beginPath();
+        context.arc(x, y, r, Math.PI, 2 * Math.PI);
+
+        // menutup kubah
+        context.moveTo(x-r, y);
+        context.lineTo(x+r, y);
+
+        // mewarnai dan menggaris kubah
+        context.lineWidth=r/10;
+        // context.stroke();
+        context.fill();
+        }
+        createDome(canvas.width / 2 -2 * 105 , canvas.height / 2 - 150, 40, "white");
+        // createDome(canvas.width / 2 +2 * 105, canvas.height / 2 - 150, 40, "blue");
+        createDome(canvas.width / 2 , canvas.height / 2, 100, "white");
+
+        function createWall(x,y,width,height,color){
+        context.beginPath();
+        context.rect(x, y , width, height);
+        // context.stroke();
+        context.lineWidth=width/10;
+        context.fillStyle=color;
+        context.fill();
+        }
+        createWall(canvas.width/2-500,canvas.height/2 + 190,1000,120,"lime")
+        createWall(canvas.width / 2 -100, canvas.height / 2 ,200,200,"green")
+        createWall(canvas.width / 2 +2 * 50, canvas.height / 2 ,100,200,"green")
+        createWall(canvas.width / 2 -2 * 150, canvas.height / 2 ,200,200,"green")
+        createWall(canvas.width / 2 -2 * 125, canvas.height / 2 - 150,80,150,"green")
+
+
+        function createDoor(x,y,width,height,color){
+        createWall(x - 2 * 25 , y / 2 + 100,width,height,color)
+        createDome(x , y / 2 + 100,width / 2,height / 2,color)
+        }
+        
+        createDoor(canvas.width/2,canvas.height,100,100,"brown")
+        // createDoor(canvas.width/2 + 2 * 100,canvas.height,100,100,"brown")
+        createDoor(canvas.width/2 - 2 * 100,canvas.height,100,100,"brown")
+
+        function createBatang(x,y,width,height,color){
+        createWall(x - 2 , y / 2 - 130,width,height,color)
+        }
+
+        createBatang(canvas.width/2,canvas.height,6,30,"black")
+        createBatang(canvas.width/2 - 212,canvas.height - 175,6,30,"black")
+        // createBatang(canvas.width/2 + 212,canvas.height - 175,6,30,"black")
+
+        createWall(canvas.width/2-325,canvas.height/2 + 200,550,15,"orange")
+        createWall(canvas.width/2-350,canvas.height/2 + 210,600,15,"yellow")
+        createWall(canvas.width/2+300,canvas.height/2 + 10,30,200,"brown")
+        context.fillStyle="green";
+        context.beginPath();
+        context.arc(canvas.width/2+320,canvas.height/2 + 10, 60, Math.PI, 3 * Math.PI);
+        context.fill();        
+
+    </script>
+</body>
+</html>
